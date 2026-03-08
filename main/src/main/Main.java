@@ -18,25 +18,40 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        Livro livro = new Livro("Narnia","Aventura",300);
+        Lista<Livro> lista = new Lista<Livro>();
         JOptionPane.showMessageDialog(null, "Seja Bem vindo! Este é o programa de controle dos livros.");
         int num = opcao();
         
-        if(num == 1){
-            System.out.println("1");
-        }else if(num == 2){
-            System.out.println("2");
-        }else if(num == 3){
-            System.out.println("3");
-        }else if(num == 4){
-            System.out.println("4");
-        }else if(num == 5){
-            System.out.println("5");
-        }else if(num == 6){
-            System.out.println("6");
-        }else{
-           System.out.println("7"); 
+        while(num != 7){
+            if(num == 1){
+                System.out.println("1");
+                lista.add(livro);
+                num = opcao();
+            }else if(num == 2){
+                System.out.println("2");
+                String titulo = JOptionPane.showInputDialog("Digite o titulo do livro que você quer excluir!");
+                lista.removeUtimaOco(titulo);
+                num = opcao();
+            }else if(num == 3){
+                System.out.println("3");
+                JOptionPane.showMessageDialog(null, "lista.toString()");
+                num = opcao();
+            }else if(num == 4){
+                System.out.println("4");
+                num = opcao();
+            }else if(num == 5){
+                System.out.println("5");
+                num = opcao();
+            }else if(num == 6){
+                System.out.println("6");
+                num = opcao();
+            }else{
+                JOptionPane.showMessageDialog(null, "Número não disponível!!");
+                num = opcao();
+            }
         }
-        
+        JOptionPane.showMessageDialog(null, "Lista salva com sucesso!");
     }
     
 }

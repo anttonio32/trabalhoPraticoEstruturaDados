@@ -1,6 +1,6 @@
 package main;
 
-public class Livro {
+public class Livro implements Comparable{
     private String titulo;
     private String genero;
     private int numPag;
@@ -10,7 +10,18 @@ public class Livro {
         this.genero = genero;
         this.numPag = numPag;
     }
+    
+    @Override
+    public int compareTo(Object outro){
+        if(this.numPag < ((Livro)outro).getNumPag())
+            return -1;
+        if(this.numPag > ((Livro)outro).getNumPag())
+            return 1;
+        
+        return 0;  
+    }
 
+    
     public String getTitulo() {
         return titulo;
     }
