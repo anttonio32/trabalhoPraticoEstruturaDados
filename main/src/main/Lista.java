@@ -1,7 +1,7 @@
 package main;
 import java.util.LinkedList;
 
-public class Lista<T> {
+public class Lista<T>{
     private LinkedList<T> lista;
 
     public Lista() {this.lista = new LinkedList<T>();}
@@ -12,6 +12,11 @@ public class Lista<T> {
     public boolean removeUtimaOco(String t){
         return this.lista.removeLastOccurrence(t);
     }
+    
+    public Object posicao(int i){
+        return this.lista.get(i);
+    }
+    
     @Override
     public String toString(){
        return this.lista.toString();
