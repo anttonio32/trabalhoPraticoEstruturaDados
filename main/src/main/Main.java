@@ -59,7 +59,8 @@ public class Main {
             }else if(num == 2){
                 System.out.println("2");
                 String titulo = JOptionPane.showInputDialog("Digite o titulo do livro que você quer excluir!");
-                lista.removeUtimaOco(titulo);
+                Livro teste = lista.removeUtimaOco(titulo);
+                System.out.println(teste);
                 num = opcao();
             }else if(num == 3){
                 System.out.println("3");

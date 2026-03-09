@@ -9,8 +9,14 @@ public class Lista<T>{
     public void add(T t){
         this.lista.add(t);
     }
-    public boolean removeUtimaOco(String t){
-        return this.lista.removeLastOccurrence(t);
+    public T removeUtimaOco(String t){
+        for (int i = lista.size() -1; i >= 0; i--) {//executa do final da lista
+            Livro livro = (Livro) lista.get(i); //forca o objeto da lista a ser um livro
+            if(livro.getTitulo().equalsIgnoreCase(t)){
+                return lista.remove(i);
+            }
+        }
+        return null;
     }
     
     public Object posicao(int i){
