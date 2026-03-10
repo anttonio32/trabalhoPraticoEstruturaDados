@@ -20,8 +20,7 @@ public class Main {
     public static int opcaoLivro(){
         int n = Integer.parseInt(JOptionPane.showInputDialog("Digite:\n"
                 + "1. Para Adicionar um Livro\n"
-                + "2. Para Adicionar uma Lista Vazia\n"
-                + "3. Para sair."));
+                + "2. Para sair."));
         return n;
     }
 
@@ -39,7 +38,7 @@ public class Main {
             if(num == 1){
                 System.out.println("1");
                 int n = opcaoLivro();
-                while(n != 3){
+                while(n != 2){
                     if(n == 1){
                         String titulo = JOptionPane.showInputDialog("Digite o título do livro:");
                         String genero = JOptionPane.showInputDialog("Digite o gênero do livro:");
@@ -47,9 +46,6 @@ public class Main {
                         Livro livro = new Livro(titulo, genero, numPag);
                         lista.add(livro);
                         n =opcaoLivro();
-                    }else if(n == 2){
-                        Lista<Livro> lista2 = new Lista<Livro>();
-                        n=opcaoLivro();
                     }else{
                         JOptionPane.showMessageDialog(null, "Numero errado, digite novamente!!");
                         n=opcaoLivro();

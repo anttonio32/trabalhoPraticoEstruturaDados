@@ -10,6 +10,10 @@ public class Livro implements Comparable{
         this.genero = genero;
         this.numPag = numPag;
     }
+
+    public Livro() {}
+    
+    
     
     @Override
     public int compareTo(Object outro){
