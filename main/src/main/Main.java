@@ -64,6 +64,7 @@ public class Main {
                 num = opcao();
             }else if(num == 4){
                 System.out.println("4");
+                //pode usar a queue do proprio java
                 Fila<Livro> f1 =new Fila<Livro>();
                 f1.imprimirFila();
                 num = opcao();

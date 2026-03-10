@@ -6,6 +6,7 @@ public class Fila<T extends Comparable>{
 
     public Fila() {this.fila = new LinkedList<T>();}
     
+    //pode utilizar a quick
     public void addOrdemPrioridade(T outro){
         for(int i = 0;i < fila.size(); i++){
             if (outro.compareTo(fila.get(i)) == -1){
