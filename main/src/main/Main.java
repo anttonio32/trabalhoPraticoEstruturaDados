@@ -1,5 +1,4 @@
 package main;
-
 import javax.swing.JOptionPane;
 
 public class Main {
@@ -96,9 +95,43 @@ public class Main {
                     }
                 }*/
                 num = opcao();
+                
             }else if(num == 5){
+                
                 System.out.println("5");
-                num = opcao();
+                
+                Lista<Livro>  fila =  new Lista<Livro>();
+                 
+                // tive que criar tamanho em lista
+                for(int i = 0; i < lista.tamanho(); i++){
+                    fila.add((Livro)lista.posicao(i));
+                }
+                Lista<Pilha> pilhas = new Lista<Pilha>();
+                
+                while(!fila.vazia()){
+                    Livro l = fila.removeFirst();
+                    boolean achou = false;
+                    
+                    for(int j = 0; j < pilhas.tamanho(); j++){
+                            Pilha p = pilhas.posicao(j);
+
+                            if(p.getGenero().equalsIgnoreCase(l.getGenero())){
+                                 p.insere(l);
+                                 achou = true;
+                                 break;
+                         }
+}
+                    if(!achou){
+                        Pilha nova = new Pilha(l.getGenero());
+                        nova.insere(l);
+                        pilhas.add(nova);
+                    }
+                }
+                for(int i = 0; i <pilhas.tamanho(); i++){
+                    System.out.println(pilhas.posicao(i));
+                }
+               num = opcao();
+                
             }else if(num == 6){
                 System.out.println("6");
                 num = opcao();

@@ -19,6 +19,10 @@ public class Lista<T>{
         return null;
     }
     
+    public T removeFirst(){
+        return this.lista.removeFirst();
+    }
+    
     public T remove(){
         return this.lista.remove();
     }
