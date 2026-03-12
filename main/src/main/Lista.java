@@ -36,7 +36,7 @@ public class Lista<T>{
     }
     
     public int tamanho(){
-        return this.lista.size();
+        return this.lista.size()-1;
     }
     
     @Override
@@ -44,3 +44,5 @@ public class Lista<T>{
        return this.lista.toString();
     }
 }
+
+

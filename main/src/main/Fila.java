@@ -7,8 +7,12 @@ public class Fila<T>{
     public Fila() {this.fila = new LinkedList<T>();}
     
     //pode utilizar a quick
-    public void addOrdemPrioridade(T outro){
-        this.fila.add(outro);
+    public void addFim(T outro){
+        this.fila.addLast(outro);
+    }
+    
+    public void addInicio(int i ,T outro){
+        this.fila.add(i,outro);
     }
     
     @Override
@@ -18,5 +22,9 @@ public class Fila<T>{
     
     public T pega(int i){
         return this.fila.get(i);
+    }
+    
+    public boolean vazia(){
+        return this.fila.isEmpty();
     }
 }

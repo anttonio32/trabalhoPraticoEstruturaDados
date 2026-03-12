@@ -64,36 +64,26 @@ public class Main {
             }else if(num == 4){
                 System.out.println("4");
                 Fila<Livro> f1 =new Fila<Livro>();
-                /*
                 // passar por toda a lista 
-                int tamanhoInicial = lista.tamanho();  //guardar tamnaho pois vai remover itens dentro do for
-                for(int i=0; i<tamanhoInicial; i++){
-
-
-                    Livro atual = lista.remove();  //remove item da pilha
-                    boolean inseriu = false;       // Falg para ver se consegui inserir em uma pilha já existente
-
-                    //passar na lista de pilhas
-                    for(int j=0; j<lista.tamanho(); j++){
-
-                        Pilha<Produto> pilhaAtual = lista.get(j);  //pega pilha da lista
-                        Produto ProdDaPilha = pilhaAtual.olha();   //pega produto da pilha
-
-                        //produto é desse bairro
-                        if(ProdDaPilha.getBairro().equalsIgnoreCase(atual.getBairro())){
-                            pilhaAtual.insere(atual);   //Insere na pilha
-                            inseriu = true;             //Marca que já inseriu
-                            break;
-                        }
+                Livro atual = null;
+                int j = 0;
+                for(int i = 0;i <= lista.tamanho();i++){
+                    atual = lista.remove();  //remove item da lista
+                    if(f1.vazia()) {
+                        f1.addFim(atual);
+                    }
+                    
+                    if(atual.getNumPag() < f1.pega(i).getNumPag()){
+                        f1.addInicio(i,atual);
+                    }
+                    if (atual.getNumPag() > f1.pega(i).getNumPag()){
+                        f1.addInicio(i+1,atual);
+                    }else if(atual.getNumPag() == f1.pega(i).getNumPag()){
+                        f1.addFim(atual);
                     }
 
-                    // nao achou pilha para o bairro
-                    if(!inseriu){
-                        Pilha<Produto> pilhaNova = new Pilha<Produto>();  //Cria nova pilha
-                        pilhaNova.insere(atual);     // Insere o produto
-                        lista.add(pilhaNova);        // add na lista de pilhas
-                    }
-                }*/
+                }
+                System.out.println(f1.toString());
                 num = opcao();
                 
             }else if(num == 5){
