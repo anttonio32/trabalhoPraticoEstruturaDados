@@ -19,8 +19,20 @@ public class Lista<T>{
         return null;
     }
     
-    public Object posicao(int i){
+    public T remove(){
+        return this.lista.remove();
+    }
+    
+    public T posicao(int i){
         return this.lista.get(i);
+    }
+    
+    public boolean vazia(){
+        return this.lista.isEmpty();
+    }
+    
+    public int tamanho(){
+        return this.lista.size();
     }
     
     @Override

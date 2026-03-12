@@ -64,9 +64,37 @@ public class Main {
                 num = opcao();
             }else if(num == 4){
                 System.out.println("4");
-                //pode usar a queue do proprio java
                 Fila<Livro> f1 =new Fila<Livro>();
-                f1.imprimirFila();
+                /*
+                // passar por toda a lista 
+                int tamanhoInicial = lista.tamanho();  //guardar tamnaho pois vai remover itens dentro do for
+                for(int i=0; i<tamanhoInicial; i++){
+
+
+                    Livro atual = lista.remove();  //remove item da pilha
+                    boolean inseriu = false;       // Falg para ver se consegui inserir em uma pilha já existente
+
+                    //passar na lista de pilhas
+                    for(int j=0; j<lista.tamanho(); j++){
+
+                        Pilha<Produto> pilhaAtual = lista.get(j);  //pega pilha da lista
+                        Produto ProdDaPilha = pilhaAtual.olha();   //pega produto da pilha
+
+                        //produto é desse bairro
+                        if(ProdDaPilha.getBairro().equalsIgnoreCase(atual.getBairro())){
+                            pilhaAtual.insere(atual);   //Insere na pilha
+                            inseriu = true;             //Marca que já inseriu
+                            break;
+                        }
+                    }
+
+                    // nao achou pilha para o bairro
+                    if(!inseriu){
+                        Pilha<Produto> pilhaNova = new Pilha<Produto>();  //Cria nova pilha
+                        pilhaNova.insere(atual);     // Insere o produto
+                        lista.add(pilhaNova);        // add na lista de pilhas
+                    }
+                }*/
                 num = opcao();
             }else if(num == 5){
                 System.out.println("5");
