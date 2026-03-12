@@ -102,16 +102,27 @@ public class Main {
                 
                 Lista<Livro>  fila =  new Lista<Livro>();
                  
-                // tive que criar tamanho em lista
+                // percorre os livros que estão na lista principal
+                // O "i" começa em 0 e vai até o tamanho da lista
+                // Em cada repetição pegamos um livro da lista e colocamos na fila
+                // depois processa e separar por gênero
                 for(int i = 0; i < lista.tamanho(); i++){
                     fila.add((Livro)lista.posicao(i));
                 }
                 Lista<Pilha> pilhas = new Lista<Pilha>();
                 
-                while(!fila.vazia()){
+// enquanto a fila n estiver vazia, o programa continua executando
+// A cada repetição, remove o primeiro da fila pra analisar
+// pega cada livro e verificar se já existe uma pilha
+// Se existir, o livro é inserido na pilha.
+// se nao cria uma nova pilha 
+                
+                        while(!fila.vazia()){
                     Livro l = fila.removeFirst();
-                    boolean achou = false;
-                    
+                    boolean achou = false;  // achou é pra verificar se encontrou a pilha do genero procurado
+                
+                    //esse for vai procurar a pilha do mesmo genero do livro que foi analisado no while,   
+                    //se nao achar ele cria uma nova pilha com o nome do genero
                     for(int j = 0; j < pilhas.tamanho(); j++){
                             Pilha p = pilhas.posicao(j);
 
@@ -127,6 +138,7 @@ public class Main {
                         pilhas.add(nova);
                     }
                 }
+                        //esse aq so vai imprimir as pilhas de todos generos 
                 for(int i = 0; i <pilhas.tamanho(); i++){
                     System.out.println(pilhas.posicao(i));
                 }
