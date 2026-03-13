@@ -63,7 +63,35 @@ public class Main {
                 num = opcao();
             }else if(num == 4){
                 System.out.println("4");
-                Fila<Livro> f1 =new Fila<Livro>();
+
+                Fila<Livro> filaLivros = new Fila<Livro>();
+
+                for (int i = 0; i < listaLivros.size(); i++) {
+
+                    for (int j = 0; j < listaLivros.size() - 1; j++) {
+
+                        Livro livro1 = listaLivros.get(j);
+                        Livro livro2 = listaLivros.get(j + 1);
+
+                        if (livro1.getNumPaginas() > livro2.getNumPaginas()) {
+
+                            listaLivros.set(j, livro2);
+                            listaLivros.set(j + 1, livro1);
+
+                        }
+
+                    }
+
+                }
+
+                for (Livro livro : listaLivros) {
+                    filaLivros.insere(livro);
+                }
+
+                String fila = "";
+
+                JOptionPane.showMessageDialog(null, filaLivros);
+                /*Fila<Livro> f1 =new Fila<Livro>();
                 // passar por toda a lista 
                 Livro atual = null;
                 int j = 0;
@@ -83,7 +111,7 @@ public class Main {
                     }
 
                 }
-                System.out.println(f1.toString());
+                System.out.println(f1.toString()); */
                 num = opcao();
                 
             }else if(num == 5){
