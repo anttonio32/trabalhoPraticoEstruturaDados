@@ -64,54 +64,14 @@ public class Main {
             }else if(num == 4){
                 System.out.println("4");
 
-                Fila<Livro> filaLivros = new Fila<Livro>();
+                Fila<Livro> filaLivros = new Fila<>();
 
-                for (int i = 0; i < listaLivros.size(); i++) {
-
-                    for (int j = 0; j < listaLivros.size() - 1; j++) {
-
-                        Livro livro1 = listaLivros.get(j);
-                        Livro livro2 = listaLivros.get(j + 1);
-
-                        if (livro1.getNumPaginas() > livro2.getNumPaginas()) {
-
-                            listaLivros.set(j, livro2);
-                            listaLivros.set(j + 1, livro1);
-
-                        }
-
-                    }
-
+                for(int i = 0; i < lista.tamanho(); i++){
+                    Livro livro = lista.posicao(i);
+                    filaLivros.inserirOrdenado(livro);
                 }
-
-                for (Livro livro : listaLivros) {
-                    filaLivros.insere(livro);
-                }
-
-                String fila = "";
-
-                JOptionPane.showMessageDialog(null, filaLivros);
-                /*Fila<Livro> f1 =new Fila<Livro>();
-                // passar por toda a lista 
-                Livro atual = null;
-                int j = 0;
-                for(int i = 0;i <= lista.tamanho();i++){
-                    atual = lista.remove();  //remove item da lista
-                    if(f1.vazia()) {
-                        f1.addFim(atual);
-                    }
-                    
-                    if(atual.getNumPag() < f1.pega(i).getNumPag()){
-                        f1.addInicio(i,atual);
-                    }
-                    if (atual.getNumPag() > f1.pega(i).getNumPag()){
-                        f1.addInicio(i+1,atual);
-                    }else if(atual.getNumPag() == f1.pega(i).getNumPag()){
-                        f1.addFim(atual);
-                    }
-
-                }
-                System.out.println(f1.toString()); */
+                System.out.println(lista.toString());
+                JOptionPane.showMessageDialog(null, filaLivros.toString());
                 num = opcao();
                 
             }else if(num == 5){
@@ -129,13 +89,13 @@ public class Main {
                 }
                 Lista<Pilha> pilhas = new Lista<Pilha>();
                 
-// enquanto a fila n estiver vazia, o programa continua executando
-// A cada repetição, remove o primeiro da fila pra analisar
-// pega cada livro e verificar se já existe uma pilha
-// Se existir, o livro é inserido na pilha.
-// se nao cria uma nova pilha 
+                // enquanto a fila n estiver vazia, o programa continua executando
+                // A cada repetição, remove o primeiro da fila pra analisar
+                // pega cada livro e verificar se já existe uma pilha
+                // Se existir, o livro é inserido na pilha.
+                // se nao cria uma nova pilha 
                 
-                        while(!fila.vazia()){
+                    while(!fila.vazia()){
                     Livro l = fila.removeFirst();
                     boolean achou = false;  // achou é pra verificar se encontrou a pilha do genero procurado
                 
