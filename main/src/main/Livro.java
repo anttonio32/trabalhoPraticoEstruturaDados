@@ -1,6 +1,6 @@
 package main;
 
-public class Livro{
+public class Livro implements Comparable<Livro>{
     private String titulo;
     private String genero;
     private int numPag;
@@ -13,16 +13,14 @@ public class Livro{
 
     public Livro() {}
     
-    
-    
-    public int compare(Livro outro){
-        if(this.numPag < outro.getNumPag())
+    @Override
+    public int compareTo(Livro o) {
+        if(this.numPag < o.getNumPag())
             return -1;
-        if(this.numPag > outro.getNumPag())
+        if(this.numPag > o.getNumPag())
             return 1;
         return 0;  
     }
-
     
     public String getTitulo() {
         return titulo;
@@ -52,6 +50,5 @@ public class Livro{
     public String toString() {
         return "Livro: titulo=" + titulo + ", genero=" + genero + ", numPag=" + numPag + '.';
     }
-    
-    
+
 }

@@ -1,4 +1,5 @@
 package main;
+import java.util.PriorityQueue;
 import javax.swing.JOptionPane;
 
 public class Main {
@@ -24,11 +25,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        /*Livro livro = new Livro("Narnia","Aventura",300);
-        Livro livro2 = new Livro("harry","Aventura",100);
-        Livro livro3 = new Livro("Narcos","Aventura",300);
-        Livro livro4 = new Livro("Narcos2","Aventura",800);
-        Livro livro5 = new Livro("matheus","Aventura",500);*/
         JOptionPane.showMessageDialog(null, "Seja Bem vindo! Este é o programa de controle dos livros.");
         Lista<Livro> lista = new Lista<Livro>();
         int num = opcao();
@@ -63,17 +59,19 @@ public class Main {
                 num = opcao();
             }else if(num == 4){
                 System.out.println("4");
-
-                Fila<Livro> filaLivros = new Fila<>();
-
+                PriorityQueue<Livro> fila = new PriorityQueue<Livro>();
                 for(int i = 0; i < lista.tamanho(); i++){
-                    Livro livro = lista.posicao(i);
-                    filaLivros.inserirOrdenado(livro);
+                    Livro l = (Livro) lista.posicao(i);
+                    fila.add(l);
                 }
-                System.out.println(lista.toString());
-                JOptionPane.showMessageDialog(null, filaLivros.toString());
-                num = opcao();
                 
+                String resultado = "";
+                while(!fila.isEmpty()){
+                    resultado += fila.poll() + "\n";
+                }
+
+                JOptionPane.showMessageDialog(null, resultado);
+                num = opcao();
             }else if(num == 5){
                 
                 System.out.println("5");
