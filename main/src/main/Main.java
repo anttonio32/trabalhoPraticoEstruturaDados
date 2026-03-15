@@ -13,7 +13,8 @@ public class Main {
             "4. Inserir lista de livros em uma FILA\n" +
             "5. Criar PILHAS de livros do mesmo gênero literário\n" +
             "6. Inserir lista de livros em ARVORE\n" +
-            "7. Salvar Lista."
+            "7. Salvar Lista.\n" +
+            "0. Sair sem salvar."
         ));
         return num;
     }
@@ -30,7 +31,7 @@ public class Main {
         Lista<Livro> lista = new Lista<Livro>();
         int num = opcao();
         
-        while(num != 7){
+        while(num != 0){
             if(num == 1){
                 System.out.println("1");
                 int n = opcaoLivro();
@@ -74,48 +75,30 @@ public class Main {
                 JOptionPane.showMessageDialog(null, resultado);
                 num = opcao();
             }else if(num == 5){
-                
                 System.out.println("5");
-                
-                Lista<Livro>  fila =  new Lista<Livro>();
-                 
-                // percorre os livros que estão na lista principal
-                // O "i" começa em 0 e vai até o tamanho da lista
-                // Em cada repetição pegamos um livro da lista e colocamos na fila
-                // depois processa e separar por gênero
+                Lista<Livro>  lista1 =  new Lista<Livro>();
                 for(int i = 0; i < lista.tamanho(); i++){
-                    fila.add((Livro)lista.posicao(i));
+                    lista1.add((Livro)lista.posicao(i));
                 }
                 Lista<Pilha> pilhas = new Lista<Pilha>();
                 
-                // enquanto a fila n estiver vazia, o programa continua executando
-                // A cada repetição, remove o primeiro da fila pra analisar
-                // pega cada livro e verificar se já existe uma pilha
-                // Se existir, o livro é inserido na pilha.
-                // se nao cria uma nova pilha 
-                
-                    while(!fila.vazia()){
-                    Livro l = fila.removeFirst();
-                    boolean achou = false;  // achou é pra verificar se encontrou a pilha do genero procurado
-                
-                    //esse for vai procurar a pilha do mesmo genero do livro que foi analisado no while,   
-                    //se nao achar ele cria uma nova pilha com o nome do genero
-                    for(int j = 0; j < pilhas.tamanho(); j++){
-                            Pilha p = pilhas.posicao(j);
-
-                            if(p.getGenero().equalsIgnoreCase(l.getGenero())){
-                                 p.insere(l);
-                                 achou = true;
-                                 break;
-                         }
-}
-                    if(!achou){
-                        Pilha nova = new Pilha(l.getGenero());
-                        nova.insere(l);
-                        pilhas.add(nova);
+                while(!lista1.vazia()){
+                Livro l = lista1.removeFirst();
+                boolean achou = false;  
+                for(int j = 0; j < pilhas.tamanho(); j++){
+                    Pilha p = pilhas.posicao(j);
+                    if(p.getGenero().equalsIgnoreCase(l.getGenero())){
+                         p.insere(l);
+                         achou = true;
+                         break;
                     }
                 }
-                        //esse aq so vai imprimir as pilhas de todos generos 
+                if(!achou){
+                    Pilha nova = new Pilha(l.getGenero());
+                    nova.insere(l);
+                    pilhas.add(nova);
+                }
+                }
                 for(int i = 0; i <pilhas.tamanho(); i++){
                     System.out.println(pilhas.posicao(i));
                 }
@@ -156,14 +139,15 @@ public class Main {
                 JOptionPane.showMessageDialog(null, resultadoArvore);
 
                 num = opcao();
-            }
-
-            else{
+            }else if (num == 7){
+                JOptionPane.showMessageDialog(null, "Lista salva com sucesso!");
+                num = 0;
+            }else{
                 JOptionPane.showMessageDialog(null, "Número não disponível!!");
                 num = opcao();
             }
         }
-        JOptionPane.showMessageDialog(null, "Lista salva com sucesso!");
+        JOptionPane.showMessageDialog(null, "Fechado!!");
     }
     
 }
