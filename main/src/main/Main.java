@@ -1,4 +1,5 @@
 package main;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 import javax.swing.JOptionPane;
 
@@ -122,8 +123,42 @@ public class Main {
                 
             }else if(num == 6){
                 System.out.println("6");
+
+                // cria árvore
+                Arvore arvore = new Arvore();
+
+                // lista para guardar livros repetidos
+                LinkedList<Livro> repetidos = new LinkedList<>();
+
+                // insere todos os livros na árvore
+                for (int i = 0; i < lista.tamanho(); i++) {
+                    Livro livro = (Livro) lista.posicao(i);
+                    arvore.inserir(livro, repetidos);
+                }
+
+                String resultadoArvore = "Árvore EM ORDEM:\n";
+
+                // mostra percurso em ordem
+                resultadoArvore += arvore.emOrdem();
+
+                resultadoArvore += "\nÁrvore PRÉ ORDEM:\n";
+
+                // mostra percurso pré-ordem
+                resultadoArvore += arvore.preOrdem();
+
+                resultadoArvore += "\nLivros repetidos:\n";
+
+                // mostra livros repetidos
+                for (Livro livro : repetidos) {
+                    resultadoArvore += livro + "\n";
+                }
+
+                JOptionPane.showMessageDialog(null, resultadoArvore);
+
                 num = opcao();
-            }else{
+            }
+
+            else{
                 JOptionPane.showMessageDialog(null, "Número não disponível!!");
                 num = opcao();
             }
