@@ -14,10 +14,10 @@ public class Lista<T> implements Serializable {
         this.lista.add(i, t);
     }
     public T removeUtimaOco(String t){
-        for (int i = lista.size() -1; i >= 0; i--) {//executa do final da lista
-            Livro livro = (Livro) lista.get(i); //forca o objeto da lista a ser um livro
+        for (int i = this.lista.size() -1; i >= 0; i--) {//executa do final da lista
+            Livro livro = (Livro) this.lista.get(i); //forca o objeto da lista a ser um livro
             if(livro.getTitulo().equalsIgnoreCase(t)){
-                return lista.remove(i);
+                return this.lista.remove(i);
             }
         }
         return null;

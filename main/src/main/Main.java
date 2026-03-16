@@ -9,44 +9,29 @@ import javax.swing.JOptionPane;
 public class Main {
 
     public static Lista<IndiceInvertido> criarIndice(Lista<Livro> lista){
-
         Lista<IndiceInvertido> indice = new Lista<>();
-
         try{
-
             BufferedReader reader = new BufferedReader(new FileReader("arquivo.txt"));
-
             String linha;
-
             // guardar todas as linhas do arquivo
             LinkedList<String> titulosArquivo = new LinkedList<>();
-
             while((linha = reader.readLine()) != null){
                 titulosArquivo.add(linha);
             }
-
             reader.close();
-
             // comparar com livros da lista
             for(int i = 0; i < lista.tamanho(); i++){
-
                 Livro livro = lista.posicao(i);
-
                 int contador = 0;
-
                 for(String linhaArquivo : titulosArquivo){
-
                     String[] partes = linhaArquivo.split(";");
-
                     String tituloArquivo = partes[0];
-
                     if(livro.getTitulo().equalsIgnoreCase(tituloArquivo)){
                         contador++;
                     }
                 }
 
                 boolean existe = false;
-
                 for(int k = 0; k < indice.tamanho(); k++){
 
                     if(indice.posicao(k).getTitulo().equalsIgnoreCase(livro.getTitulo())){
@@ -54,7 +39,6 @@ public class Main {
                         break;
                     }
                 }
-
                 if(!existe){
                     IndiceInvertido idx = new IndiceInvertido(livro.getTitulo(), contador);
                     indice.add(idx);
@@ -87,66 +71,42 @@ public class Main {
     }
 
     public static int opcaoLivro(){
-
         int n = Integer.parseInt(JOptionPane.showInputDialog(
                 "Digite:\n"
                         + "1. Para Adicionar um Livro\n"
                         + "2. Para sair."
         ));
-
         return n;
     }
 
     public static void main(String[] args) {
-
-
-
         JOptionPane.showMessageDialog(null, "Seja Bem vindo! Este é o programa de controle dos livros.");
-
         Livro livroArquivo = new Livro();
 
         // LÊ O ARQUIVO AO INICIAR
         Lista<Livro> lista = livroArquivo.ler();
-
         int num = opcao();
-
         while(num != 0){
 
             if(num == 1){
-
                 int n = opcaoLivro();
-
                 while(n != 2){
-
                     if(n == 1){
-
                         String titulo = JOptionPane.showInputDialog("Digite o título do livro:");
                         String genero = JOptionPane.showInputDialog("Digite o gênero do livro:");
                         int numPag = Integer.parseInt(JOptionPane.showInputDialog("Digite o número de páginas:"));
-
                         Livro livro = new Livro(titulo, genero, numPag);
-
                         lista.add(livro);
-
                         n = opcaoLivro();
-
                     }else{
-
                         JOptionPane.showMessageDialog(null, "Numero errado, digite novamente!!");
-
                         n = opcaoLivro();
                     }
                 }
-
-                num = opcao();
-            }
-
-            else if(num == 2){
-
+                num = opcao();  
+            }else if(num == 2){
                 String titulo = JOptionPane.showInputDialog("Digite o titulo do livro que você quer excluir!");
-
                 Livro teste = lista.removeUtimaOco(titulo);
-
                 if (teste == null) {
                     JOptionPane.showMessageDialog(null,"Esse título não existe");
                 } else {
@@ -154,162 +114,105 @@ public class Main {
                 }
 
                 num = opcao();
-            }
-
-            else if(num == 3){
-
+            }else if(num == 3){
                 JOptionPane.showMessageDialog(null, lista.toString());
-
+                
                 num = opcao();
-            }
-
-            else if(num == 4){
-
+            }else if(num == 4){
                 PriorityQueue<Livro> fila = new PriorityQueue<>();
 
                 for(int i = 0; i < lista.tamanho(); i++){
-
                     Livro l = lista.posicao(i);
-
                     fila.add(l);
                 }
 
                 String resultado = "";
-
                 while(!fila.isEmpty()){
-
                     resultado += fila.poll() + "\n";
                 }
 
                 JOptionPane.showMessageDialog(null, resultado);
-
                 num = opcao();
-            }
-
-            else if(num == 5){
-
+            }else if(num == 5){
                 Lista<Livro> lista1 = new Lista<>();
 
                 for(int i = 0; i < lista.tamanho(); i++){
-
                     lista1.add(lista.posicao(i));
                 }
 
                 Lista<Pilha> pilhas = new Lista<>();
-
                 while(!lista1.vazia()){
-
                     Livro l = lista1.removeFirst();
-
                     boolean achou = false;
-
+                    
                     for(int j = 0; j < pilhas.tamanho(); j++){
-
                         Pilha p = pilhas.posicao(j);
-
                         if(p.getGenero().equalsIgnoreCase(l.getGenero())){
-
                             p.insere(l);
-
                             achou = true;
-
                             break;
                         }
                     }
 
                     if(!achou){
-
                         Pilha nova = new Pilha(l.getGenero());
-
                         nova.insere(l);
-
                         pilhas.add(nova);
                     }
                 }
 
                 for(int i = 0; i < pilhas.tamanho(); i++){
-
                     JOptionPane.showMessageDialog(null, pilhas.posicao(i));
                 }
-
                 num = opcao();
             }
 
             else if(num == 6){
-
                 Arvore arvore = new Arvore();
-
                 LinkedList<Livro> repetidos = new LinkedList<>();
-
                 for (int i = 0; i < lista.tamanho(); i++) {
-
                     Livro livro = lista.posicao(i);
-
                     arvore.inserir(livro, repetidos);
                 }
 
                 String resultadoArvore = "Árvore EM ORDEM:\n";
-
                 resultadoArvore += arvore.emOrdem();
-
+                
                 resultadoArvore += "\nÁrvore PRÉ ORDEM:\n";
-
                 resultadoArvore += arvore.preOrdem();
-
+                
                 resultadoArvore += "\nLivros repetidos:\n";
 
                 for (Livro livro : repetidos) {
-
                     resultadoArvore += livro + "\n";
                 }
 
                 JOptionPane.showMessageDialog(null, resultadoArvore);
-
                 num = opcao();
-            }
-
-            else if (num == 7){
-
+            }else if (num == 7){
                 if(lista.vazia()){
-
                     JOptionPane.showMessageDialog(null, "Lista vazia!");
-
                 } else {
-
                     Livro livro = new Livro();
-
                     livro.grava(lista);
-
                     JOptionPane.showMessageDialog(null, "Lista salva com sucesso!");
                 }
 
                 num = opcao();
-            }
-
-            else if(num == 8){
-
+            }else if(num == 8){
                 Lista<IndiceInvertido> indice = criarIndice(lista);
-
                 String resultado = "";
-
                 for(int i = 0; i < indice.tamanho(); i++){
                     resultado += indice.posicao(i) + "\n";
                 }
 
                 JOptionPane.showMessageDialog(null, resultado);
-
                 num = opcao();
-
-            }
-
-            else{
-
+            }else{
                 JOptionPane.showMessageDialog(null, "Número não disponível!!");
-
                 num = opcao();
             }
         }
-
         JOptionPane.showMessageDialog(null, "Fechado!!");
     }
 }
