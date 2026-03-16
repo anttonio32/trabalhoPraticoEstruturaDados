@@ -147,7 +147,11 @@ public class Main {
 
                 Livro teste = lista.removeUtimaOco(titulo);
 
-                System.out.println(teste + " excluido!" );
+                if (teste == null) {
+                    JOptionPane.showMessageDialog(null,"Esse título não existe");
+                } else {
+                    JOptionPane.showMessageDialog(null,teste + " Excluido!" );
+                }
 
                 num = opcao();
             }
