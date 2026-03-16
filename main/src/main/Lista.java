@@ -1,7 +1,8 @@
 package main;
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Lista<T>{
+public class Lista<T> implements Serializable {
     private LinkedList<T> lista;
 
     public Lista() {this.lista = new LinkedList<T>();}
