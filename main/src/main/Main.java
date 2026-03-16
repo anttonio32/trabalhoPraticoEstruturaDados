@@ -1,10 +1,72 @@
 package main;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import javax.swing.JOptionPane;
 
 public class Main {
+
+    public static Lista<IndiceInvertido> criarIndice(Lista<Livro> lista){
+
+        Lista<IndiceInvertido> indice = new Lista<>();
+
+        try{
+
+            BufferedReader reader = new BufferedReader(new FileReader("arquivo.txt"));
+
+            String linha;
+
+            // guardar todas as linhas do arquivo
+            LinkedList<String> titulosArquivo = new LinkedList<>();
+
+            while((linha = reader.readLine()) != null){
+                titulosArquivo.add(linha);
+            }
+
+            reader.close();
+
+            // comparar com livros da lista
+            for(int i = 0; i < lista.tamanho(); i++){
+
+                Livro livro = lista.posicao(i);
+
+                int contador = 0;
+
+                for(String linhaArquivo : titulosArquivo){
+
+                    String[] partes = linhaArquivo.split(";");
+
+                    String tituloArquivo = partes[0];
+
+                    if(livro.getTitulo().equalsIgnoreCase(tituloArquivo)){
+                        contador++;
+                    }
+                }
+
+                boolean existe = false;
+
+                for(int k = 0; k < indice.tamanho(); k++){
+
+                    if(indice.posicao(k).getTitulo().equalsIgnoreCase(livro.getTitulo())){
+                        existe = true;
+                        break;
+                    }
+                }
+
+                if(!existe){
+                    IndiceInvertido idx = new IndiceInvertido(livro.getTitulo(), contador);
+                    indice.add(idx);
+                }
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return indice;
+    }
 
     public static int opcao(){
 
@@ -17,6 +79,7 @@ public class Main {
                         + "5. Criar PILHAS de livros do mesmo gênero literário\n"
                         + "6. Inserir lista de livros em ARVORE\n"
                         + "7. Salvar Lista.\n"
+                        + "8. Extra\n"
                         + "0. Sair sem salvar."
         ));
 
@@ -35,6 +98,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
+
+
 
         JOptionPane.showMessageDialog(null, "Seja Bem vindo! Este é o programa de controle dos livros.");
 
@@ -82,7 +147,7 @@ public class Main {
 
                 Livro teste = lista.removeUtimaOco(titulo);
 
-                System.out.println(teste);
+                System.out.println(teste + " excluido!" );
 
                 num = opcao();
             }
@@ -160,7 +225,7 @@ public class Main {
 
                 for(int i = 0; i < pilhas.tamanho(); i++){
 
-                    System.out.println(pilhas.posicao(i));
+                    JOptionPane.showMessageDialog(null, pilhas.posicao(i));
                 }
 
                 num = opcao();
@@ -214,7 +279,23 @@ public class Main {
                     JOptionPane.showMessageDialog(null, "Lista salva com sucesso!");
                 }
 
-                num = 0;
+                num = opcao();
+            }
+
+            else if(num == 8){
+
+                Lista<IndiceInvertido> indice = criarIndice(lista);
+
+                String resultado = "";
+
+                for(int i = 0; i < indice.tamanho(); i++){
+                    resultado += indice.posicao(i) + "\n";
+                }
+
+                JOptionPane.showMessageDialog(null, resultado);
+
+                num = opcao();
+
             }
 
             else{

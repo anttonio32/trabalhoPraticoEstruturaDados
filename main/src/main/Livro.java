@@ -126,7 +126,7 @@ public class Livro implements Comparable<Livro>{
 
     @Override
     public String toString() {
-        return "Livro: titulo=" + titulo + ", genero=" + genero + ", numPag=" + numPag + '.';
+        return "Livro: " + titulo + " / Genero: " + genero + " / Paginas:" + numPag + "\n";
     }
 
 }
